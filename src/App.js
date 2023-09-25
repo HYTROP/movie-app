@@ -5,41 +5,46 @@ import Card from "./Card";
 export default class App extends Component {
 
   state = {
-    movies: []
+    movies: [],
+    backdropPath: ''
   };
 
-  async componentDidMount() {
-    try {
-      await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='return'`
-      )
-        .then(response => {
-          console.log('GET', response.status)
+  componentDidMount() {
+    fetch("https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='return'")
+      .then((response) => {
+        return response.json()
+      })
+      .then(data => {
+        this.setState(() => {
+          return {
+            movies: data.results
+          }
         })
-        .then((apiMovies) => this.setState(() => {
-          return { movies: apiMovies }
-        }))
-    } catch (err) {
-      console.log(err, 'Message Error')
-    }
-
+      })
   }
-  //   const { movies } = this.state;
+
+
+
   render() {
+
+    const { movies } = this.state;
+
     return (
       <main>
         <header>
           <div>
-            <span className="search-panel">SPACE FOR SEARCH</span>
+            <span className="search-panel">
+              SPACE FOR SEARCH BLOCK
+            </span>
           </div>
           <ul className="card-box">
-            {this.state.movies.map((movie) => {
+            {movies.map((movie) => {
+              console.log(movie)
               return (
-                <li key={movie.id}>
-                  <Card
-                    movies={this.movies}
-                  />
-                </li>
+                <Card
+                  {...movie} // все данные объекта
+                  key={movie.id}
+                />
               )
             })}
           </ul>
