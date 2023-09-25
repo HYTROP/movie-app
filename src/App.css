@@ -59,9 +59,21 @@ header {
   height: 100vh;
 }
 
+.search-block {
+  margin: 0 auto;
+}
+
+.search-input {
+  outline: none;
+  width: 938px;
+  height: 40px;
+  margin: 30px 0 30px 0;
+}
+
+
 .search-panel {
-  width: 100vw;
-  height: 100px;
+  margin: 50px auto;
+  height: max-content;
   color: #111111;
   max-width: 1000px;
   display: flex;

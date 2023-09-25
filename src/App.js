@@ -6,7 +6,7 @@ export default class App extends Component {
 
   state = {
     movies: [],
-    backdropPath: ''
+    searchInput: ''
   };
 
   componentDidMount() {
@@ -23,8 +23,6 @@ export default class App extends Component {
       })
   }
 
-
-
   render() {
 
     const { movies } = this.state;
@@ -32,14 +30,26 @@ export default class App extends Component {
     return (
       <main>
         <header>
-          <div>
-            <span className="search-panel">
-              SPACE FOR SEARCH BLOCK
-            </span>
+          <div className='search-block'>
+            <div className="search-panel">
+              <input
+                id='id'
+                className='search-input'
+                type='search'
+                placeholder='Type to search...'
+                autoFocus
+                onChange={(event) => {
+                  const item = event.target.value;
+                  this.setState(() => {
+                    return { searchInput: item }
+                  })
+                }}
+              />
+
+            </div>
           </div>
           <ul className="card-box">
             {movies.map((movie) => {
-              console.log(movie)
               return (
                 <Card
                   {...movie} // все данные объекта

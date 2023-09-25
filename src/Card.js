@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns'
 export default class Card extends Component {
 
 
   render() {
 
-    const { id, title, posterPath, overview, releaseDate } = this.props;
-    // console.log(releaseDate)
+    const { id, title, poster_path, overview, release_date } = this.props;
+    // console.log(posterPath)
 
     function shortenDescription(overview, maxLength = 130) {
       if (overview.length <= maxLength) {
@@ -30,22 +30,19 @@ export default class Card extends Component {
       <li key={id}>
         <div className="card">
           <div className="img-film">
-            <img className="card-img" alt="">
-              {/* {posterPath} */}
+            <img className="card-img" alt="" src={"https://image.tmdb.org/t/p/w500" + poster_path} >
             </img>
           </div>
           <div className="card-text">
             <h1 className="title">
               {shortenDescription(title)}
-              {/* {title} */}
             </h1>
             <div className="data-of-release">
-              {/* {formatDistanceToNow(Date())} */}
-              <span>March 05</span>
+              {release_date ? format(new Date(release_date), 'MMMM d, y') : ""}
             </div>
             <div>
               <button className="genre">
-                <span >Action</span>
+                <span>Action</span>
               </button>
 
             </div>
@@ -57,7 +54,7 @@ export default class Card extends Component {
             </div>
           </div>
         </div>
-      </li>
+      </li >
     )
   }
 
