@@ -3,12 +3,6 @@ import { format } from 'date-fns';
 export default class Card extends Component {
 
   render() {
-    // const { error } = this.props;
-
-    // const errorMessage = error ? <ErrorIndicator /> : null;
-
-    // const loading = errorMessage ? <Card /> : null;
-
     const { id, title,
       poster_path, overview,
       release_date } = this.props;

@@ -59,6 +59,18 @@ header {
   height: 100vh;
 }
 
+.offline-message {
+  margin: auto 140px;
+}
+
+.isOffline {
+  width: max-content;
+  box-shadow: 3px 4px 8px bisque;
+  background-color: bisque;
+  display: block;
+}
+
+
 .search-block {
   margin: 0 auto;
 }

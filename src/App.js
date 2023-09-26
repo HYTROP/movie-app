@@ -10,19 +10,24 @@ export default class App extends Component {
     movies: [],
     searchInput: '',
     loading: true,
-    error: false
+    error: false,
+    isOnline: navigator.onLine
   };
 
   onError = (err) => {
-    // console.log('ERR HERE', err.status)
+    window.dispatchEvent(new Event('offline'))
     this.setState({
       error: true,
-      loading: false
+      loading: false,
+      offline: false
     })
     return err
   }
 
   componentDidMount() {
+    window.addEventListener("online", this.handleNetworkChange);
+    window.addEventListener("offline", this.handleNetworkChange);
+
     fetch("https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='return'")
       .then((response) => {
         return response.json()
@@ -39,13 +44,18 @@ export default class App extends Component {
       .catch(this.onError)
   }
 
+  handleNetworkChange = () => {
+    this.setState({ isOnline: navigator.onLine });
+
+  };
+
+  hideOfflineMessage() {
+
+  }
+
   render() {
 
-    const { movies, loading, error } = this.state;
-
-    // error ? <ErrorIndicator /> : null;
-
-    // const hasData = !(loading || error);
+    const { movies, loading, error, isOnline } = this.state;
 
     if (loading) {
       return <Spinner />
@@ -55,7 +65,15 @@ export default class App extends Component {
     }
 
     return (
+
       <main>
+        <div className='offline-message'>
+          {!isOnline && (
+            <div className='isOffline'>
+              <p>Отсутствует подключение к интернету. Проверьте сетевое соединение и попробуйте еще раз.</p>
+            </div>
+          )}
+        </div>
         <header>
           <div className='search-block'>
             <div className="search-panel">
