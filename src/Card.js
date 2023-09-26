@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 export default class Card extends Component {
 
-
   render() {
+    // const { error } = this.props;
 
-    const { id, title, poster_path, overview, release_date } = this.props;
-    // console.log(posterPath)
+    // const errorMessage = error ? <ErrorIndicator /> : null;
+
+    // const loading = errorMessage ? <Card /> : null;
+
+    const { id, title,
+      poster_path, overview,
+      release_date } = this.props;
 
     function shortenDescription(overview, maxLength = 130) {
       if (overview.length <= maxLength) {
@@ -25,6 +30,7 @@ export default class Card extends Component {
 
       return shortened.trim() + '...';
     }
+
 
     return (
       <li key={id}>
@@ -57,6 +63,5 @@ export default class Card extends Component {
       </li >
     )
   }
-
 }
 
