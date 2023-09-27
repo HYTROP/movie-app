@@ -80,6 +80,8 @@ header {
   width: 938px;
   height: 40px;
   margin: 30px 0 30px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: large;
 }
 
 
@@ -160,4 +162,14 @@ button {
 
   margin: 0 0 10px 0;
 
+}
+
+.search-start-message {
+  font-family: 'Inter', sans-serif;
+  font-size: large;
+}
+
+.not-found {
+  font-family: 'Inter', sans-serif;
+  font-size: large;
 }

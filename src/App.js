@@ -60,7 +60,7 @@ export default class App extends Component {
   }, 500);
 
   handleChangeQuery = (event) => {
-    const query = event.target.value;
+    const query = event.target.value.trim();
     this.setState({ query }, this.fetchMovies);
   }
 
@@ -104,6 +104,16 @@ export default class App extends Component {
             </div>
           </div>
           <ul className="card-box">
+            {query.trim() === '' && (
+              <div className='search-start-message'>
+                <p>Начните вводить название фильма.</p>
+              </div>
+            )}
+            {movies.length === 0 && query.trim() !== '' && (
+              <div className='not-found'>
+                <p>Ни одного фильма не найдено по вашему запросу.</p>
+              </div>
+            )}
             {movies.map((movie) => {
               return (
                 <Card
