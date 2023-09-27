@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Spinner from "./Spin";
 import Card from "./Card";
 import ErrorIndicator from './ErrorIndicator';
+import { debounce } from 'lodash';
 
 export default class App extends Component {
 
@@ -11,7 +12,8 @@ export default class App extends Component {
     searchInput: '',
     loading: true,
     error: false,
-    isOnline: navigator.onLine
+    isOnline: navigator.onLine,
+    query: ''
   };
 
   onError = (err) => {
@@ -28,7 +30,20 @@ export default class App extends Component {
     window.addEventListener("online", this.handleNetworkChange);
     window.addEventListener("offline", this.handleNetworkChange);
 
-    fetch("https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='return'")
+    this.fetchMovies();
+
+    if (this.state.query === this.state.searchInput) {
+      this.setState({ searchInput: this.state.query }, this.fetchMovies)
+    }
+    // if (this.state.movies.length === 0) {
+    //   this.setState({ searchInput: 'return' })
+    // }
+
+  }
+
+  fetchMovies = debounce(() => {
+    const { query } = this.state;
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='${query}'`)
       .then((response) => {
         return response.json()
       })
@@ -37,25 +52,25 @@ export default class App extends Component {
           return {
             movies: data.results,
             loading: false,
-            error: false
+            error: false,
           }
         })
       })
       .catch(this.onError)
+  }, 500);
+
+  handleChangeQuery = (event) => {
+    const query = event.target.value;
+    this.setState({ query }, this.fetchMovies);
   }
 
   handleNetworkChange = () => {
     this.setState({ isOnline: navigator.onLine });
-
   };
-
-  hideOfflineMessage() {
-
-  }
 
   render() {
 
-    const { movies, loading, error, isOnline } = this.state;
+    const { movies, loading, error, isOnline, query } = this.state;
 
     if (loading) {
       return <Spinner />
@@ -83,12 +98,8 @@ export default class App extends Component {
                 type='search'
                 placeholder='Type to search...'
                 autoFocus
-                onChange={(event) => {
-                  const item = event.target.value;
-                  this.setState(() => {
-                    return { searchInput: item }
-                  })
-                }}
+                value={query}
+                onChange={this.handleChangeQuery}
               />
             </div>
           </div>
