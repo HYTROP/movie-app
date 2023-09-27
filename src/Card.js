@@ -46,9 +46,8 @@ export default class Card extends Component {
               </button>
 
             </div>
-            <div>
-              <span className="card-description"
-              >
+            <div className="card-description">
+              <span>
                 {shortenDescription(overview)}
               </span>
             </div>

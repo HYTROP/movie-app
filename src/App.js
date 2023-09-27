@@ -4,16 +4,19 @@ import Spinner from "./Spin";
 import Card from "./Card";
 import ErrorIndicator from './ErrorIndicator';
 import { debounce } from 'lodash';
+// import Pagi from './Pagination';
+import { Pagination } from 'antd';
 
 export default class App extends Component {
 
   state = {
     movies: [],
     searchInput: '',
+    query: '',
     loading: true,
     error: false,
     isOnline: navigator.onLine,
-    query: ''
+    pageNumber: 1
   };
 
   onError = (err) => {
@@ -33,26 +36,31 @@ export default class App extends Component {
     this.fetchMovies();
 
     if (this.state.query === this.state.searchInput) {
-      this.setState({ searchInput: this.state.query }, this.fetchMovies)
+      this.setState({ searchInput: this.state.query, loading: true }, this.fetchMovies)
     }
-    // if (this.state.movies.length === 0) {
-    //   this.setState({ searchInput: 'return' })
-    // }
 
   }
 
   fetchMovies = debounce(() => {
-    const { query } = this.state;
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='${query}'`)
+    const { query, pageNumber } = this.state;
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=6dce2a79655cf9304a13d5633dead5ab&query='${query}'&page=${pageNumber}`)
       .then((response) => {
         return response.json()
       })
       .then(data => {
+        const totalItems = data.total_results;
+        const totalPages = data.total_pages;
+
+        // this.setState({ totalItems, totalPages });
+
+        // console.log(data)
         this.setState(() => {
           return {
             movies: data.results,
             loading: false,
             error: false,
+            totalItems,
+            totalPages
           }
         })
       })
@@ -64,13 +72,20 @@ export default class App extends Component {
     this.setState({ query }, this.fetchMovies);
   }
 
+  handlePageChange = (pageNumber) => {
+    this.setState({ pageNumber }, this.fetchMovies)
+  }
+
   handleNetworkChange = () => {
     this.setState({ isOnline: navigator.onLine });
   };
 
   render() {
 
-    const { movies, loading, error, isOnline, query } = this.state;
+    const { movies, loading, error, isOnline, query, pageNumber } = this.state;
+
+    const totalItems = this.state.totalItems;
+    const itemsPerPage = 5;
 
     if (loading) {
       return <Spinner />
@@ -103,6 +118,7 @@ export default class App extends Component {
               />
             </div>
           </div>
+
           <ul className="card-box">
             {query.trim() === '' && (
               <div className='search-start-message'>
@@ -110,10 +126,12 @@ export default class App extends Component {
               </div>
             )}
             {movies.length === 0 && query.trim() !== '' && (
+
               <div className='not-found'>
-                <p>Ни одного фильма не найдено по вашему запросу.</p>
+                <p>Мы не смогли найти ни одного фильма по Вашему запросу. Пожалуйста, измените запрос.</p>
               </div>
             )}
+
             {movies.map((movie) => {
               return (
                 <Card
@@ -123,6 +141,26 @@ export default class App extends Component {
               )
             })}
           </ul>
+
+          {movies.length !== 0 && (
+            <div className='paggy'>
+              <div className="pagination-container">
+                <Pagination
+                  defaultCurrent={1}
+                  style={
+                    {
+                      display: 'flex',
+                      margin: '0 auto',
+                      width: 300
+                    }}
+                  current={pageNumber}
+                  total={totalItems}
+                  pageSize={itemsPerPage}
+                  onChange={this.handlePageChange}
+                />
+              </div>
+            </div>
+          )}
         </header>
       </main >
     )

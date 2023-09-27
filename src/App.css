@@ -115,7 +115,7 @@ li,
 
 .card {
   background-color: rgba(246, 246, 246, 0.56);
-  box-shadow: 8px 5px 8px rgba(105, 104, 104, 0.164);
+  box-shadow: 0.2px 6px 5px 8px rgba(105, 104, 104, 0.164);
 }
 
 .title {
@@ -129,10 +129,7 @@ li,
 }
 
 .data-of-release {
-  /* width: 140px; */
   height: 30px;
-  /* margin: 0, 15px, 0, 0; */
-
   color: rgb(191, 194, 194);
 }
 
@@ -144,7 +141,6 @@ li,
 .img-film {
   width: 183px;
   background: no-repeat;
-  /* background-image: url(./imgs/img-film.png); */
 }
 
 .card-text {
@@ -172,4 +168,59 @@ button {
 .not-found {
   font-family: 'Inter', sans-serif;
   font-size: large;
+}
+
+@media (max-width: 600px) {
+  .card-box {
+    width: 388px;
+    /* padding: 0 20px; */
+    margin: 0 auto;
+  }
+
+  li,
+  .card {
+    display: flex;
+    width: 388px;
+    height: 245px;
+    /* margin: 10px; */
+    /* box-sizing: border-box; */
+  }
+
+  .card {
+    box-sizing: border-box;
+    margin: 0 0;
+  }
+
+  .card-text {
+    margin: 13px;
+  }
+
+  .search-block {
+    /* width: 388px; */
+    padding: 20px 30px;
+  }
+
+  .search-input {
+    margin: 0 0;
+    border-color: solid #e1e1e1;
+  }
+
+  .card-description {
+    position: relative;
+    right: 60px;
+
+    width: 350px;
+    height: 92px;
+  }
+
+  .img-film {
+    width: 60px;
+    height: 91px;
+    background: no-repeat;
+  }
+
+  header {
+    width: 435px;
+    height: 100vh;
+  }
 }
