@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { format } from 'date-fns';
+import Rated from "./Rate";
+import './Rated.css'
 export default class Card extends Component {
 
   render() {
@@ -50,6 +52,10 @@ export default class Card extends Component {
               <span>
                 {shortenDescription(overview)}
               </span>
+              <div className="rated">
+              <Rated/>
+              </div>
+              
             </div>
           </div>
         </div>

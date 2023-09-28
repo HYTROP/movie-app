@@ -12,7 +12,7 @@ export default class App extends Component {
   state = {
     movies: [],
     searchInput: '',
-    query: '',
+    query: '1',
     loading: true,
     error: false,
     isOnline: navigator.onLine,
@@ -163,8 +163,13 @@ export default class App extends Component {
             )}
 
           </Tabs.TabPane>
-          <Tabs.TabPane tab='Rated' className='tab-content' key='tab2'>
-            <p>TAB CONTENT2</p>
+          <Tabs.TabPane tab='Rated' className='tab-content' key='tab2' onChange={() => this.getIdSessionMovies()}>
+            {/* <RatedFilms
+              ratedMovies={ratedMovies}
+              genres={genres}
+              getRatedMovie={(id, value) => this.getRatedMovie(id, value)}
+              ratedId={ratedId}
+            /> */}
 
           </Tabs.TabPane>
         </Tabs>
