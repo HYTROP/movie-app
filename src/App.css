@@ -224,3 +224,7 @@ button {
     height: 100vh;
   }
 }
+
+.ant-pagination .css-dev-only-do-not-override-1ck3jst {
+  display: none;
+}
