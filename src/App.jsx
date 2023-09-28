@@ -18,7 +18,6 @@ export default class App extends Component {
     pageNumber: 1,
     idSession: "",
     ratedMovies: [],
-    idSession: "",
   };
 
   onError = (err) => {
@@ -99,31 +98,6 @@ export default class App extends Component {
         });
       });
   };
-
-  // getRatedMovie = async (id, value) => {
-  //   console.log(id, value)
-  //   if (value === 0) {
-  //     return null;
-  //   }
-  //   const { idSession } = this.state;
-  //   await fetch(https://api.themoviedb.org/3/movie/${id}/rating?api_key=6dce2a79655cf9304a13d5633dead5ab&guest_session_id=${idSession},
-  //     {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  //       body: JSON.stringify({
-  //         value: value,
-  //       })
-  //     }
-  //   ).then((item) =>
-  //     this.setState(({ ratedId }) => {
-  //       console.log(item)
-  //       const rateObj = { ...ratedId, [id]: value };
-  //       return { ratedId: rateObj }
-  //     }))
-
-  // }
-
-  //
 
   handleChangeQuery = (event) => {
     const query = event.target.value.trim();
