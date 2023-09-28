@@ -129,17 +129,15 @@ button {
 @media (max-width: 600px) {
   .card-box {
     width: 388px;
-    /* padding: 0 20px; */
     margin: 0 auto;
+    display: flex;
   }
 
   li,
   .card {
     display: flex;
-    width: 388px;
+    width: 288px;
     height: 245px;
-    /* margin: 10px; */
-    /* box-sizing: border-box; */
   }
 
   .card {
@@ -152,7 +150,7 @@ button {
   }
 
   .search-block {
-    /* width: 388px; */
+    width: 388px;
     padding: 20px 30px;
   }
 
@@ -175,8 +173,21 @@ button {
     background: no-repeat;
   }
 
-  header {
+  footer {
     width: 435px;
     height: 100vh;
   }
 }
+
+/* .ant-tabs {
+  flex-wrap: nowrap;
+}
+
+.ant-tabs-nav {
+  width: 100px;
+  left: 50%;
+}
+
+.ant-tabs-tabpane .ant-tabs-tabpane-active {
+  width: 100px;
+} */

@@ -1,11 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
+// import 'antd/dist/antd.css'
 import Spinner from "./components/Spin/Spin";
 import Card from "./components/Card/Card";
 import ErrorIndicator from './components/ErrorIndicator/ErrorIndicator';
 import { debounce } from 'lodash';
-// import Pagi from './Pagination';
-import { Pagination } from 'antd';
+import { Pagination, Tabs } from 'antd';
+import TabPane from 'antd/es/tabs/TabPane';
 
 export default class App extends Component {
 
@@ -104,44 +105,65 @@ export default class App extends Component {
             </div>
           )}
         </div>
-        <header>
-          <div className='search-block'>
-            <div className="search-panel">
-              <input
-                id='id'
-                className='search-input'
-                type='search'
-                placeholder='Type to search...'
-                autoFocus
-                value={query}
-                onChange={this.handleChangeQuery}
-              />
-            </div>
-          </div>
 
-          <ul className="card-box">
-            {query.trim() === '' && (
-              <div className='search-start-message'>
-                <p>Начните вводить название фильма.</p>
-              </div>
-            )}
-            {movies.length === 0 && query.trim() !== '' && (
+        {/* <Tabs defaultActiveKey="1" centered style={{ margin: '0 20' }} >
 
-              <div className='not-found'>
-                <p>Мы не смогли найти ни одного фильма по Вашему запросу. Пожалуйста, измените запрос.</p>
-              </div>
-            )}
-
-            {movies.map((movie) => {
-              return (
-                <Card
-                  {...movie} // все данные объекта
-                  key={movie.id}
+          <Tabs.TabPane tab='Tab 1' key='tab1'>
+            <p>контент tab 1</p>
+            <div className='search-block'>
+              <div className="search-panel">
+                <input
+                  id='id'
+                  className='search-input'
+                  type='search'
+                  placeholder='Type to search...'
+                  autoFocus
+                  value={query}
+                  onChange={this.handleChangeQuery}
                 />
-              )
-            })}
-          </ul>
+              </div>
+            </div>
+          </Tabs.TabPane>
+        </Tabs> */}
+        <div className='search-block'>
+          <div className="search-panel">
+            <input
+              id='id'
+              className='search-input'
+              type='search'
+              placeholder='Type to search...'
+              autoFocus
+              value={query}
+              onChange={this.handleChangeQuery}
+            />
+          </div>
+        </div>
 
+        <ul className="card-box">
+          {query.trim() === '' && (
+            <div className='search-start-message'>
+              <p>Начните вводить название фильма.</p>
+            </div>
+          )}
+          {movies.length === 0 && query.trim() !== '' && (
+
+            <div className='not-found'>
+              <p>Мы не смогли найти ни одного фильма по Вашему запросу. Пожалуйста, измените запрос.</p>
+            </div>
+          )}
+
+          {movies.map((movie) => {
+            return (
+              <Card
+                {...movie} // все данные объекта
+                key={movie.id}
+              />
+            )
+          })}
+        </ul>
+
+
+        <footer>
           {movies.length !== 0 && (
             <div className='paggy'>
               <div className="pagination-container">
@@ -161,7 +183,8 @@ export default class App extends Component {
               </div>
             </div>
           )}
-        </header>
+        </footer>
+
       </main >
     )
   }
