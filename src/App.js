@@ -1,10 +1,10 @@
 import './App.css';
 import React, { Component } from 'react';
+
 import Spinner from "./Spin";
 import Card from "./Card";
 import ErrorIndicator from './ErrorIndicator';
 import { debounce } from 'lodash';
-// import Pagi from './Pagination';
 import { Pagination } from 'antd';
 
 export default class App extends Component {
@@ -125,9 +125,11 @@ export default class App extends Component {
                 <p>Начните вводить название фильма.</p>
               </div>
             )}
+
             {movies.length === 0 && query.trim() !== '' && (
 
               <div className='not-found'>
+
                 <p>Мы не смогли найти ни одного фильма по Вашему запросу. Пожалуйста, измените запрос.</p>
               </div>
             )}
