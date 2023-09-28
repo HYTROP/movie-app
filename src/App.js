@@ -5,7 +5,7 @@ import Spinner from "./Spin";
 import Card from "./Card";
 import ErrorIndicator from './ErrorIndicator';
 import { debounce } from 'lodash';
-import { Pagination } from 'antd';
+import { Pagination, Tabs } from 'antd';
 
 export default class App extends Component {
 
@@ -50,10 +50,6 @@ export default class App extends Component {
       .then(data => {
         const totalItems = data.total_results;
         const totalPages = data.total_pages;
-
-        // this.setState({ totalItems, totalPages });
-
-        // console.log(data)
         this.setState(() => {
           return {
             movies: data.results,
@@ -104,8 +100,76 @@ export default class App extends Component {
             </div>
           )}
         </div>
+
+        <Tabs defaultActiveKey='tab1' centered >
+          <Tabs.TabPane tab='Search' className='tab-content' key='tab1'>
+            <div className='search-block'>
+              <div className="search-panel">
+                <input
+                  id='id'
+                  className='search-input'
+                  type='search'
+                  placeholder='Type to search...'
+                  autoFocus
+                  value={query}
+                  onChange={this.handleChangeQuery}
+                />
+              </div>
+            </div>
+
+            <ul className="card-box">
+              {query.trim() === '' && (
+                <div className='search-start-message'>
+                  <p>Начните вводить название фильма.</p>
+                </div>
+              )}
+
+              {movies.length === 0 && query.trim() !== '' && (
+
+                <div className='not-found'>
+
+                  <p>Мы не смогли найти ни одного фильма по Вашему запросу. Пожалуйста, измените запрос.</p>
+                </div>
+              )}
+
+              {movies.map((movie) => {
+                return (
+                  <Card
+                    {...movie} // все данные объекта
+                    key={movie.id}
+                  />
+                )
+              })}
+            </ul>
+
+            {movies.length !== 0 && (
+              <div className='paggy'>
+                <div className="pagination-container">
+                  <Pagination
+                    defaultCurrent={1}
+                    style={
+                      {
+                        display: 'flex',
+                        margin: '0 auto',
+                        width: 300
+                      }}
+                    current={pageNumber}
+                    total={totalItems}
+                    pageSize={itemsPerPage}
+                    onChange={this.handlePageChange}
+                  />
+                </div>
+              </div>
+            )}
+
+          </Tabs.TabPane>
+          <Tabs.TabPane tab='Rated' className='tab-content' key='tab2'>
+            <p>TAB CONTENT2</p>
+
+          </Tabs.TabPane>
+        </Tabs>
         <header>
-          <div className='search-block'>
+          {/* <div className='search-block'>
             <div className="search-panel">
               <input
                 id='id'
@@ -142,9 +206,9 @@ export default class App extends Component {
                 />
               )
             })}
-          </ul>
+          </ul> */}
 
-          {movies.length !== 0 && (
+          {/* {movies.length !== 0 && (
             <div className='paggy'>
               <div className="pagination-container">
                 <Pagination
@@ -162,7 +226,7 @@ export default class App extends Component {
                 />
               </div>
             </div>
-          )}
+          )} */}
         </header>
       </main >
     )
