@@ -1,8 +1,8 @@
 import './App.css';
 import React, { Component } from 'react';
-import Spinner from "./Spin";
-import Card from "./Card";
-import ErrorIndicator from './ErrorIndicator';
+import Spinner from "./components/Spin/Spin";
+import Card from "./components/Card/Card";
+import ErrorIndicator from './components/ErrorIndicator/ErrorIndicator';
 import { debounce } from 'lodash';
 // import Pagi from './Pagination';
 import { Pagination } from 'antd';

@@ -105,50 +105,6 @@ span {
   flex-wrap: wrap;
 }
 
-li,
-.card {
-  display: flex;
-  width: 451px;
-  height: 279px;
-  margin: 0 30px 20px 0;
-}
-
-.card {
-  background-color: rgba(246, 246, 246, 0.56);
-  box-shadow: 0.2px 6px 5px 8px rgba(105, 104, 104, 0.164);
-}
-
-.title {
-  margin: 0 0 5px 0;
-
-  font-family: "Inter";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 28px;
-}
-
-.data-of-release {
-  height: 30px;
-  color: rgb(191, 194, 194);
-}
-
-.card-description {
-  width: 228px;
-  height: 129px;
-}
-
-.img-film {
-  width: 183px;
-  background: no-repeat;
-}
-
-.card-text {
-  width: 240px;
-  height: 30px;
-  margin: 20px;
-}
-
 .genre,
 button {
   color: rgba(0, 0, 0, 0.65);
