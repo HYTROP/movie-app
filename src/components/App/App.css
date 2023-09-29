@@ -98,67 +98,11 @@ span {
   margin: 0 auto;
 }
 
-.card-box {
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
 
-li,
-.card {
-  display: flex;
-  width: 470px;
-  height: 279px;
-  margin: 0 30px 20px 0;
-}
 
-.card {
-  background-color: rgba(246, 246, 246, 0.56);
-  box-shadow: 0.2px 6px 5px 8px rgba(105, 104, 104, 0.164);
-}
 
-.title {
-  margin: 0 0 5px 0;
 
-  font-family: "Inter";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 28px;
-}
 
-.data-of-release {
-  height: 30px;
-  color: rgb(191, 194, 194);
-}
-
-.card-description {
-  width: 228px;
-  height: 129px;
-}
-
-.img-film {
-  width: 183px;
-  background: no-repeat;
-}
-
-.card-text {
-  width: 240px;
-  height: 30px;
-  margin: 20px;
-}
-
-.genre,
-button {
-  color: rgba(0, 0, 0, 0.65);
-  border-radius: 2px;
-  border: 1px solid #D9D9D9;
-  background: #FAFAFA;
-
-  margin: 0 0 10px 0;
-
-}
 
 .search-start-message {
   font-family: 'Inter', sans-serif;
@@ -170,33 +114,42 @@ button {
   font-size: large;
 }
 
-@media (max-width: 600px) {
-  .card-box {
-    padding: 20px 15px;
-    margin: 0 10px;
-    width: 420px;
-  }
+.error-page {
+  margin: 20px 0;
+  padding: 20px;
+}
 
-  li,
-  .card {
-    display: flex;
-    width: 388px;
-    height: 245px;
-  }
+@media (max-width: 768px) {
 
-  .card {
-    box-sizing: border-box;
-    margin: 0 0;
-  }
+  .title {
+    height: min-content;
 
-  .card-text {
-    margin: 13px;
   }
 
   .search-block {
     padding: 20px 30px;
     margin: 0 10px;
     width: 430px;
+  }
+
+  .data-of-release {
+    width: max-content;
+    height: max-content;
+  }
+
+  .search-input {
+    margin: 0 0;
+    border-color: solid #e1e1e1;
+  }
+
+
+  .rate-wrap {
+    width: max-content;
+  }
+
+  header {
+    width: 435px;
+    height: 100vh;
   }
 
   .ant-tabs-tabpane {
@@ -209,53 +162,27 @@ button {
     width: 420px;
   }
 
-  .search-input {
-    margin: 0 0;
-    border-color: solid #e1e1e1;
-  }
-
-  .card-description {
-    position: relative;
-    right: 60px;
-
-    width: 350px;
-    height: 92px;
-  }
-
-  .img-film {
-    width: 60px;
-    height: 91px;
-    background: no-repeat;
-  }
-
-  header {
-    width: 435px;
-    height: 100vh;
-  }
-
   .ant-tabs,
-  .ant-tabs-top,
-  .css-dev-only-do-not-override-1ck3jst {
+  .ant-tabs-top {
     width: 400px;
     margin: 0 0;
   }
 }
 
-.ant-pagination .css-dev-only-do-not-override-1ck3jst {
-  display: none;
-}
-
 .paggy,
 .pagination-container,
-.ant-pagination,
-.css-dev-only-do-not-override-1ck3jst {
+.ant-pagination {
   margin: 20px;
   height: 80px;
 }
 
+.ant-select,
+.ant-pagination-options-size-changer {
+  display: none;
+}
+
 .ant-tabs,
-.ant-tabs-top,
-.css-dev-only-do-not-override-1ck3jst {
+.ant-tabs-top {
   width: 100vw;
   height: 40px;
   margin: 0 0;
@@ -285,4 +212,17 @@ button {
   margin: 0 auto;
   max-width: 1000px;
   display: flex;
+}
+
+.rate-wrap {
+  height: 10px;
+
+}
+
+.ant-rate-star,
+.ant-rate-star-zero {
+  display: flex;
+  position: absolute;
+  width: 12px;
+  height: min-content;
 }
