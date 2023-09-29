@@ -11,7 +11,7 @@ export default class App extends Component {
   state = {
     movies: [],
     searchInput: "",
-    query: "1",
+    query: "",
     loading: true,
     error: false,
     isOnline: navigator.onLine,
