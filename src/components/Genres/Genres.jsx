@@ -5,6 +5,7 @@ import "./Genres.css";
 
 function Genre(props) {
   const { genreIds } = this.props;
+  //
 
   return (
     <Consumer>

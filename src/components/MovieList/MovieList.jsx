@@ -7,5 +7,5 @@ import Card from "../Card/Card";
 import "./MovieList.css";
 
 function MovieList(props) {
-  const {movieData}
+  // const {movieData}
 }
